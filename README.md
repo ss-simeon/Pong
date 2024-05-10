@@ -1,4 +1,4 @@
-![Windows/Linux/MacOS Compilation Status](https://github.com/ss-simeon/ping-pong/actions/workflows/ci.yml/badge.svg)
+![Windows/Linux/MacOS Compilation Status](https://github.com/ss-simeon/ping-pong/actions/workflows/os-cross-compilation.yml/badge.svg)
 
 # CMake SFML Project Template
 

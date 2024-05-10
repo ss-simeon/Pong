@@ -1,3 +1,5 @@
+![Windows/Linux/MacOS Compilation Status](https://github.com/ss-simeon/ping-pong/actions/workflows/os-cross-compilation.yml/badge.svg)
+
 # CMake SFML Project Template
 
 This SFML Project Template is a modified version of [cmake-sfml-project](https://github.com/SFML/cmake-sfml-project). It is meant as an internal template for new projects.

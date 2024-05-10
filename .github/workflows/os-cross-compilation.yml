@@ -1,6 +1,6 @@
 name: OS Cross Compilation
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:

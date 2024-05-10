@@ -1,30 +1,41 @@
 #include <SFML/Graphics.hpp>
 
-#include <string>
-#include <sstream>
+#include <SFML/System/String.hpp>
 
 #include "Config.h"
 
+sf::String construct_window_title();
+
 int main()
 {
-    std::ostringstream oss;
-    oss << "CMakeSFMLProject: " << CMakeSFMLProject_VERSION_MAJOR << " " << CMakeSFMLProject_VERSION_MINOR;
-    std::string var = oss.str();
-
-    sf::RenderWindow window = sf::RenderWindow{ { 1920u, 1080u }, var };
-    window.setFramerateLimit(144);
+    sf::RenderWindow window = sf::RenderWindow{ { 1920u, 1080u }, construct_window_title()};
+    window.setVerticalSyncEnabled(true);
 
     while (window.isOpen())
     {
-        for (auto event = sf::Event{}; window.pollEvent(event);)
+        for (sf::Event event = sf::Event{}; window.pollEvent(event);)
         {
-            if (event.type == sf::Event::Closed)
+            switch (event.type)
             {
-                window.close();
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+                
+                default:
+                    break;
             }
         }
 
         window.clear();
         window.display();
     }
+}
+
+sf::String construct_window_title()
+{
+    sf::String window_bar_title = sf::String("Ping Pong: Version ");
+    window_bar_title += std::to_string(PingPong_VERSION_MAJOR);
+    window_bar_title += ".";
+    window_bar_title += std::to_string(PingPong_VERSION_MINOR);
+    return window_bar_title;
 }

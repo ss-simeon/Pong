@@ -19,10 +19,11 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(PingPong src/main.cpp)
-target_link_libraries(PingPong PRIVATE sfml-graphics sfml-main)
+target_link_libraries(PingPong PRIVATE sfml-graphics)
 target_compile_features(PingPong PRIVATE cxx_std_17)
 
 if(WIN32)
+    target_link_libraries(PingPong PRIVATE sfml-main)
     set(SUBSYSTEM_LINKER_OPTIONS "/SUBSYSTEM:WINDOWS")
     target_link_options(PingPong PRIVATE ${SUBSYSTEM_LINKER_OPTIONS})
 

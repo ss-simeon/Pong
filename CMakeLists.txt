@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(CMakeSFMLProject
+project(PingPong
         VERSION 0.1
         DESCRIPTION "Template for Multi-OS SMFL Build with Visual Studio CMakePresets JSON support"
         LANGUAGES CXX)
@@ -18,23 +18,23 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(CMakeSFMLProject src/main.cpp)
-target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics sfml-main)
-target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
+add_executable(PingPong src/main.cpp)
+target_link_libraries(PingPong PRIVATE sfml-graphics sfml-main)
+target_compile_features(PingPong PRIVATE cxx_std_17)
 
 if(WIN32)
     set(SUBSYSTEM_LINKER_OPTIONS "/SUBSYSTEM:WINDOWS")
-    target_link_options(CMakeSFMLProject PRIVATE ${SUBSYSTEM_LINKER_OPTIONS})
+    target_link_options(PingPong PRIVATE ${SUBSYSTEM_LINKER_OPTIONS})
 
     add_custom_command(
-        TARGET CMakeSFMLProject
+        TARGET PingPong
         COMMENT "Copy OpenAL DLL"
-        PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:CMakeSFMLProject>
+        PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:PingPong>
         VERBATIM)
 endif()
 
-install(TARGETS CMakeSFMLProject)
+install(TARGETS PingPong)
 
-target_include_directories(CMakeSFMLProject PUBLIC
+target_include_directories(PingPong PUBLIC
                            "${CMAKE_CURRENT_BINARY_DIR}/src"
                            )

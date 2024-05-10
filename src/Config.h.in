@@ -1,3 +1,3 @@
-// the configured options and settings for CMakeSFMLProject
-#define CMakeSFMLProject_VERSION_MAJOR @CMakeSFMLProject_VERSION_MAJOR@
-#define CMakeSFMLProject_VERSION_MINOR @CMakeSFMLProject_VERSION_MINOR@
+// the configured options and settings for PingPong
+#define PingPong_VERSION_MAJOR @PingPong_VERSION_MAJOR@
+#define PingPong_VERSION_MINOR @PingPong_VERSION_MINOR@

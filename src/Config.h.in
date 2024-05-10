@@ -1,0 +1,3 @@
+// the configured options and settings for CMakeSFMLProject
+#define CMakeSFMLProject_VERSION_MAJOR @CMakeSFMLProject_VERSION_MAJOR@
+#define CMakeSFMLProject_VERSION_MINOR @CMakeSFMLProject_VERSION_MINOR@

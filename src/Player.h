@@ -7,7 +7,7 @@ class Player
 public:
 	Player(bool main_player, const float& width, const float& length);
 
-	void Player::handle_move();
+	void handle_move();
 
 	inline sf::RectangleShape getRect() const { return _rect; }
 

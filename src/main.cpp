@@ -2,6 +2,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include "Config.h"
+#include "Ball.h"
 #include "Player.h"
 
 sf::String construct_window_title();
@@ -12,8 +13,9 @@ int main()
     sf::RenderWindow window = sf::RenderWindow{ { 1920u, 1080u }, construct_window_title()};
     window.setVerticalSyncEnabled(true);
 
-    Player player_one = Player(true, 50.f, 250.f);
-    Player player_two = Player(false, 50.f, 250.f);
+    Player player = Player(true, 50.f, 250.f);
+    Player enemy = Player(false, 50.f, 250.f);
+    Ball ball = Ball();
     
     std::vector<sf::RectangleShape> dividing_lane(28u);
     set_up_dividing_lane(dividing_lane, window);
@@ -35,9 +37,16 @@ int main()
 
         window.clear();
 
-        player_one.handle_move();
-        window.draw(player_one.getRect());
-        window.draw(player_two.getRect());        
+        window.draw(player.get_rect());
+        window.draw(enemy.get_rect());
+        window.draw(ball.get_rect());
+
+        player.handle_move();
+
+        ball.move();
+        ball.notify_of_player_positions(player.get_rect(), enemy.get_rect()); 
+
+        ball.check_round_win();
 
         for (auto& dividing_rect : dividing_lane)
         {
@@ -61,7 +70,7 @@ void set_up_dividing_lane(std::vector<sf::RectangleShape>& d_lane, const sf::Ren
 {
     float r_length = 20.f;
     float r_width = 20.f;
-    sf::Vector2 r_size = sf::Vector2(r_width, r_length);
+    sf::Vector2f r_size = sf::Vector2f(r_width, r_length);
 
     float total_length = d_lane.size() * r_length;
     float ideal_spacing = (window.getSize().y - total_length) / (d_lane.size() + 1);

@@ -9,15 +9,12 @@ public:
 
 	void handle_move();
 
-	inline sf::RectangleShape getRect() const { return _rect; }
+	inline sf::RectangleShape get_rect() const { return _rect; }
 
 private:
 	bool _main_player;
 	float _width;
 	float _length;
-
-	float _acceleration{ 0.f };
-	float _velocity{ 0.f };
 	
 	sf::Vector2f _size;
 	sf::RectangleShape _rect;

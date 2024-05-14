@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 project(PingPong
-        VERSION 0.1
+        VERSION 0.2
         DESCRIPTION "Template for Multi-OS SMFL Build with Visual Studio CMakePresets JSON support"
         LANGUAGES CXX)
 
@@ -18,7 +18,7 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(PingPong src/main.cpp "src/Player.h" "src/Player.cpp" "src/Ball.h" "src/Ball.cpp")
+add_executable(PingPong src/main.cpp "src/Game.hpp" "src/Player.hpp"  "src/Ball.hpp" )
 target_link_libraries(PingPong PRIVATE sfml-graphics)
 target_compile_features(PingPong PRIVATE cxx_std_17)
 

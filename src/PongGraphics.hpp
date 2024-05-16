@@ -5,7 +5,6 @@
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/Font.hpp>
 
 class PongGraphics
 {
@@ -16,6 +15,7 @@ public:
     void handle_show_hide_fps_counter();
 
     void set_text_string(const std::string& fps);
+    inline void set_font(const sf::Font& font) { m_fps_font = font; }
 
     inline bool get_fps_show() const { return m_fps_show; }
     inline sf::Text get_text() const { return m_fps_text; }
@@ -61,9 +61,6 @@ void PongGraphics::set_up_dividing_lane()
 
 void PongGraphics::set_up_fps_text()
 {
-    std::filesystem::path font_path{ "../Media/Fonts/Basic-Regular.ttf" };
-    m_fps_font.loadFromFile(font_path.u8string());
-
     m_fps_text.setFont(m_fps_font);
     m_fps_text.setCharacterSize(24u);
     m_fps_text.setFillColor(sf::Color::Red);

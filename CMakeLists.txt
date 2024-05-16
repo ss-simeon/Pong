@@ -34,6 +34,9 @@ if(WIN32)
         VERBATIM)
 endif()
 
+file(COPY Media DESTINATION ${CMAKE_BINARY_DIR})
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/Media/ DESTINATION Media)
 install(TARGETS PingPong)
 
 target_include_directories(PingPong PUBLIC

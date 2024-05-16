@@ -3,6 +3,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include "ResourceHolder.hpp"
+
 #include "PongGraphics.hpp"
 #include "PongUtils.hpp"
 #include "Player.hpp"
@@ -20,6 +22,8 @@ private:
 	void update();
 	void render();
 
+    ResourceHolder<sf::Font, Fonts::ID> m_font_holder;
+
 	sf::RenderWindow m_window;
     size_t m_game_fps;
 
@@ -33,9 +37,12 @@ private:
 Game::Game()
     : m_pong_graphics(1920u, 1080u), m_pong_utils(),
     m_window(sf::VideoMode(1920u, 1080u), m_pong_utils.construct_window_title()),
-    m_player_one(true, 50.f, 250.f), m_player_two(false, 50.f, 250.f), m_ball(), m_game_fps{ 0u }
+    m_player_one(true, 50.f, 250.f), m_player_two(false, 50.f, 250.f), m_ball(), m_game_fps{ 0u }, m_font_holder()
 {
     m_window.setVerticalSyncEnabled(true);
+
+    m_font_holder.load(Fonts::fps_font, "../Media/Fonts/Basic-Regular.ttf");
+    m_pong_graphics.set_font(m_font_holder.get(Fonts::fps_font));
 }
 
 void Game::run()

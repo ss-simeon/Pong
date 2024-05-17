@@ -1,39 +1,19 @@
 #pragma once
 
-#include <SFML/Graphics/RectangleShape.hpp>
+#include "PlayerEntity.hpp"
+
 #include <SFML/Window/Keyboard.hpp>
 
-class Player
+class Player : public PlayerEntity
 {
 public:
-	Player(bool main_player, const float& width, const float& length);
+	Player(bool main_player, const float& width, const float& length)
+		: PlayerEntity(main_player, width, length) {}
 
-	void handle_move();
-
-	inline sf::RectangleShape get_rect() const { return _rect; }
+	void handle_move() override;
 
 private:
-	bool _main_player;
-	float _width;
-	float _length;
-	
-	sf::Vector2f _size;
-	sf::RectangleShape _rect;
-
-	size_t _window_y_size{ 1080u };
-	size_t _window_x_size{ 1920u };
 };
-
-Player::Player(bool main_player, const float& width, const float& length)
-    : _main_player{ main_player }, _width{ width }, _length{ length }, _size(_width, _length), _rect(_size)
-{
-    float x_pos_from_side = 200.f;
-
-    float centered_y_pos = 0.5f * (_window_y_size - _length);
-    float x_pos = _main_player ? x_pos_from_side : _window_x_size - x_pos_from_side - _width;
-
-    _rect.setPosition(sf::Vector2f(x_pos, centered_y_pos));
-}
 
 void Player::handle_move()
 {

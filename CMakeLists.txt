@@ -18,7 +18,7 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(PingPong src/main.cpp "src/Game.hpp" "src/Player.hpp"  "src/Ball.hpp" )
+add_executable(PingPong src/main.cpp "src/Game.hpp" "src/Player.hpp" "src/Enemy.hpp"  "src/Ball.hpp" )
 target_link_libraries(PingPong PRIVATE sfml-graphics)
 target_compile_features(PingPong PRIVATE cxx_std_17)
 

@@ -79,7 +79,7 @@ void Ball::check_collision_with_player(float player_pos_x, float player_pos_y, f
 		&& ball_pos_y + _length >= player_pos_y
 		&& ball_pos_y <= player_pos_y + player_size_y)
 	{
-		_velocity.x = 4.f;
+		_velocity.x = 6.f;
 		_velocity.y = determine_hit_back_angle(player_pos_y, player_size_y);
 	}
 }
@@ -93,7 +93,7 @@ void Ball::check_collision_with_enemy(float enemy_pos_x, float enemy_pos_y, floa
 		&& ball_pos_y + _length >= enemy_pos_y
 		&& ball_pos_y <= enemy_pos_y + enemy_size_y)
 	{
-		_velocity.x = -4.f;
+		_velocity.x = -6.f;
 		_velocity.y = determine_hit_back_angle(enemy_pos_y, enemy_size_y);
 	}
 }
